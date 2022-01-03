@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,6 +63,30 @@ class MainActivity3 : AppCompatActivity() {
     private fun changeActivity() {
         val intent = Intent (this,MainActivity::class.java)
         startActivity(intent)
+    }
+
+    fun deletePost(view: View) {
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://tgryl.pl")
+            .build()
+            .create(ApiInterface::class.java)
+        retrofitBuilder.deletePost(intent.getStringExtra("id").toString()).enqueue(object : Callback<Unit> {
+
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if(response.isSuccessful){
+                    changeActivity()
+                }
+                else{
+                    contentView.setText(intent.getStringExtra("id"))
+                }
+            }
+
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                dateView.setText(t.message)
+                Log.d("MainAc","onFailure: " +t.message);
+            }
+        })
     }
 
 }

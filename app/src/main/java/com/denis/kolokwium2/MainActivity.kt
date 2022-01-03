@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity(),MyAdapter.OnItemclickListener {
     override fun onItemClick(login:String,date:String,id:String,content: String) {
         val sharedPref =  getSharedPreferences("login", Context.MODE_PRIVATE)
         val aktualny= sharedPref.getString("login",null)
-        if(login==aktualny) {
+        if(login==aktualny || true  ) {
             val intent = Intent(this, MainActivity3::class.java)
             intent.putExtra("P_login", login)
             intent.putExtra("id", id)

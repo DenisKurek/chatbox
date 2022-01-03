@@ -10,5 +10,7 @@ interface ApiInterface {
     fun createPost(@Body postDataItem:PostDataItem ): Call<PostDataItem>
     @PUT("/shoutbox/message/{id}")
     fun putPost(@Path("id") id:String ,@Body postDataItem:PostDataItem ): Call<PostDataItem>
+    @DELETE("/shoutbox/message/{id}")
+    fun deletePost(@Path("id") id:String): Call<Unit>
 
 }
