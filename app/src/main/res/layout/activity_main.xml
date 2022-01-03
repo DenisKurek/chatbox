@@ -40,17 +40,17 @@
 
         <EditText
             android:id="@+id/editname"
-            android:layout_width="245dp"
+            android:layout_width="310dp"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
             android:ems="10"
             android:hint="text"
-            android:paddingLeft="5dp"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp" />
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="165dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
             android:background="#FFFFFF"
             android:onClick="postMyData"

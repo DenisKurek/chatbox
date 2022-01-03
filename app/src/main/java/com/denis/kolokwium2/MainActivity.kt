@@ -2,21 +2,33 @@ package com.denis.kolokwium2
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Adapter
+import android.widget.Toast
+import androidx.core.view.get
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.raw_items.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),MyAdapter.OnItemclickListener {
     lateinit var myAdapter: MyAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
+    val swipeHelper = object:SwipeHelper(){
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            myAdapter.deleteItem(viewHolder.adapterPosition)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,11 +40,20 @@ class MainActivity : AppCompatActivity() {
         recyclerview_users.setHasFixedSize(true)
         linearLayoutManager= LinearLayoutManager(this)
         recyclerview_users.layoutManager= linearLayoutManager
+        val touchHelper= ItemTouchHelper(swipeHelper)
+        touchHelper.attachToRecyclerView(recyclerview_users)
         getMyData()
         swiperefreshlayout.setOnRefreshListener(){
             getMyData()
             swiperefreshlayout.isRefreshing=false
         }
+        val t1 = Thread(
+            Runnable {
+                Thread.sleep(60000)
+                getMyData()
+            }
+        )
+        t1.start()
     }
 
     fun postMyData(view: View) {
@@ -74,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         retrofitData.enqueue(object : Callback<List<MyDataItem>?> {
             override fun onResponse(call: Call<List<MyDataItem>?>, response: Response<List<MyDataItem>?>) {
                 val responseBody = response.body()!!
-                myAdapter= MyAdapter(baseContext,responseBody)
+                myAdapter= MyAdapter(baseContext, responseBody as ArrayList<MyDataItem>,this@MainActivity)
                 myAdapter.notifyDataSetChanged()
                 recyclerview_users.adapter=myAdapter
             }
@@ -84,6 +105,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onItemClick(login:String,date:String,id:String,content: String) {
+        val sharedPref =  getSharedPreferences("login", Context.MODE_PRIVATE)
+        val aktualny= sharedPref.getString("login",null)
+        if(login==aktualny) {
+            val intent = Intent(this, MainActivity3::class.java)
+            intent.putExtra("P_login", login)
+            intent.putExtra("id", id)
+            intent.putExtra("content", content)
+            intent.putExtra("date", date)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(applicationContext,"you can't edit this post ",Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
