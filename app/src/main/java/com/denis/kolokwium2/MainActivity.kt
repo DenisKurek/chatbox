@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -28,6 +29,34 @@ class MainActivity : AppCompatActivity() {
         linearLayoutManager= LinearLayoutManager(this)
         recyclerview_users.layoutManager= linearLayoutManager
         getMyData()
+        swiperefreshlayout.setOnRefreshListener(){
+            getMyData()
+            swiperefreshlayout.isRefreshing=false
+        }
+    }
+
+    fun postMyData(view: View) {
+        val sharedPref =  getSharedPreferences("login", Context.MODE_PRIVATE)
+        val login= sharedPref.getString("login",null)
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://tgryl.pl")
+            .build()
+            .create(ApiInterface::class.java)
+       val post = PostDataItem(editname.text.toString(), login)
+        editname.setText("")
+        retrofitBuilder.createPost(post).enqueue(object : Callback<PostDataItem> {
+            override fun onResponse(call: Call<PostDataItem>, response: Response<PostDataItem>) {
+                if(response.isSuccessful){
+                    getMyData()
+                }
+            }
+
+            override fun onFailure(call: Call<PostDataItem>, t: Throwable) {
+                Log.d("MainAc","onFailure: " +t.message);
+            }
+        })
+
     }
 
     private fun changeActivity() {
@@ -56,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
 }
 
 
