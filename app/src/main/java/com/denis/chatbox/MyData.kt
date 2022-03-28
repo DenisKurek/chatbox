@@ -1,3 +1,3 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 class MyData : ArrayList<MyDataItem>()

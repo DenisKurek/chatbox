@@ -1,4 +1,4 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

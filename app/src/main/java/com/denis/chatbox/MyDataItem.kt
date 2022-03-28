@@ -1,4 +1,4 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 data class MyDataItem(
     val content: String,

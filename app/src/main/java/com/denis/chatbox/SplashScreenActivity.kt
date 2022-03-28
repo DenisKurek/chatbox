@@ -1,4 +1,4 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 import android.content.Context
 import android.content.Intent

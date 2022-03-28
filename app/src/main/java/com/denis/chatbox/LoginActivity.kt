@@ -1,10 +1,9 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class LoginActivity : AppCompatActivity() {

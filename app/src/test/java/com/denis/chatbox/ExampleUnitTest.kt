@@ -1,4 +1,4 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 import org.junit.Test
 

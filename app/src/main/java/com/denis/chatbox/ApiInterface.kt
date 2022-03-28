@@ -1,4 +1,4 @@
-package com.denis.kolokwium2
+package com.denis.chatbox
 
 import retrofit2.Call
 import retrofit2.http.*
