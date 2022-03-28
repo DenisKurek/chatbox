@@ -7,13 +7,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#B8D7EF"
         android:padding="8dp">
 
         <TextView
             android:id="@+id/login"
-            android:text="login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="login"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -21,16 +22,17 @@
             android:id="@+id/data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/login"
+            android:layout_alignParentEnd="true"
             android:text="data"
             android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/content"
-            android:text="kontent postu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/login" />
+            android:layout_below="@id/login"
+            android:fontFamily="roboto"
+            android:text="kontent postu" />
 
     </RelativeLayout>
 

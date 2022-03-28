@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.denis.kolokwium2">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,19 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kolokwium2">
         <activity
-            android:name=".MainActivity3"
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EdtidActivity"
             android:exported="true"
             android:label="@string/title_activity_main3"
             android:theme="@style/Theme.Kolokwium2.NoActionBar" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".LoginActivity"
             android:exported="true" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".MainActivity"
+            android:name="SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +37,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

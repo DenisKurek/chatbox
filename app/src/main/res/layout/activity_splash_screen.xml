@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B8D7EF"
+    tools:context=".SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_comment"
+        android:layout_centerInParent="true"
+        android:id="@+id/splash_id"/>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="93dp"
+        android:layout_below="@+id/splash_id"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/diplomata"
+        android:gravity="center"
+        android:text="Splash screen"
+        android:textSize="30sp" />
+
+
+</RelativeLayout>

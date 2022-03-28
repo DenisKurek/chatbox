@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_main2.*
 
-class MainActivity2 : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)

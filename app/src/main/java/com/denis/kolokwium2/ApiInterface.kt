@@ -2,7 +2,7 @@ package com.denis.kolokwium2
 
 import retrofit2.Call
 import retrofit2.http.*
-
+//interfejst obsługujący zapytania http
 interface ApiInterface {
     @GET("/shoutbox/messages")
     fun getData(): Call<List<MyDataItem>>
